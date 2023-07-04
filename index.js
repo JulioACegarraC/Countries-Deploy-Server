@@ -3,13 +3,13 @@ const axios = require("axios");
 const server = require("./src/server");
 const { conn, Country } = require('./src/db');
 const { countriesDBGetter } = require("./src/utils");
-const PORT = 3001;
+const PORT = process.env.PORT||3001;
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
 server.listen(PORT, async () => {
   const data = (await axios.get(URL)).data;  
   const paises = countriesDBGetter(data);
-  await Country.bulkCreate(paises);
+  //await Country.bulkCreate(paises);
   console.log(`Server listening on port ${PORT}`);
 })
 }).catch(error => console.error(error))
