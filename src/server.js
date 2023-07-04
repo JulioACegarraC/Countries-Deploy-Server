@@ -15,5 +15,5 @@ server.use('/administrador', administradorRouter)
 server.get("/", (req, res) => {
     res.status(200).send("Bienvenido...");
 })
-
+//prueba
 module.exports = server;
